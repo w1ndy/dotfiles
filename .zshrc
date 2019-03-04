@@ -1,7 +1,7 @@
 export LANG=en_US.UTF-8
 export EDITOR='vim'
 
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$HOME/dotfiles/bin:$PATH"
 export PATH="$PATH:/usr/local/opt/go/libexec/bin:$HOME/go/bin"
 
 # oh-my-zsh
