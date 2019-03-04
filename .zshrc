@@ -32,3 +32,7 @@ alias top="sudo htop"
 
 # du
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+
+# cargo
+[ -d $HOME/.cargo ] && export PATH="$PATH:$HOME/.cargo/bin"
+
