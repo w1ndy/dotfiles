@@ -1,8 +1,17 @@
-all: exa bat fzf prettyping ncdu
+all: zsh exa bat fzf prettyping ncdu
 	@echo "Linking files..."
 	@ln -sf ${PWD}/.oh-my-zsh/custom/themes/xxf.zsh-theme ${HOME}/.oh-my-zsh/custom/themes/xxf.zsh-theme
 	@ln -sf ${PWD}/.zshrc ${HOME}/.zshrc
 	@ln -sf ${PWD}/.gitconfig ${HOME}/.gitconfig
+
+zsh:
+	@if ! which zsh >/dev/null 2>&1; then \
+		echo "No ZSH installed!" && exit 1; \
+	fi
+	@ if [ ! -d ${HOME}/.oh-my-zsh ]; then \
+		echo "Install oh-my-zsh..."; \
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; \
+	fi
 
 rust:
 	@if [ ! -d ${HOME}/.cargo ]; then \
