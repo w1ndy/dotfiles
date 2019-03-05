@@ -9,8 +9,8 @@ zsh:
 		echo "No ZSH installed!" && exit 1; \
 	fi
 	@ if [ ! -d ${HOME}/.oh-my-zsh ]; then \
-		echo "Install oh-my-zsh..."; \
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; \
+		echo "Installing oh-my-zsh..."; \
+		sh -c "$$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"; \
 	fi
 
 rust:
