@@ -1,4 +1,4 @@
-all: zsh exa bat fzf prettyping ncdu
+all: zsh exa bat fzf prettyping ncdu diff_so_fancy
 	@echo "Linking files..."
 	@ln -sf ${PWD}/.oh-my-zsh/custom/themes/xxf.zsh-theme ${HOME}/.oh-my-zsh/custom/themes/xxf.zsh-theme
 	@ln -sf ${PWD}/.zshrc ${HOME}/.zshrc
@@ -55,5 +55,12 @@ ncdu:
 		mkdir usr/local/ncdu; \
 		tar -xf /tmp/ncdu.tar.gz -C usr/local/ncdu; \
 		ln -sf ${PWD}/usr/local/ncdu/ncdu ${PWD}/bin/ncdu; \
+	fi
+
+diff_so_fancy:
+	@if ! which diff-so-fancy >/dev/null 2>&1; then \
+		echo "Installing diff-so-fancy..."; \
+		curl -o bin/diff-so-fancy -sSL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy; \
+		chmod +x bin/diff-so-fancy; \
 	fi
 
