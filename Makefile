@@ -1,6 +1,6 @@
 all: zsh exa bat fzf prettyping ncdu diff_so_fancy
 	@echo "Linking files..."
-	@ln -sf ${PWD}/.oh-my-zsh/custom/themes/xxf.zsh-theme ${HOME}/.oh-my-zsh/custom/themes/xxf.zsh-theme
+	@ln -sf ${PWD}/.oh-my-zsh/custom/themes ${HOME}/.oh-my-zsh/custom/themes
 	@ln -sf ${PWD}/.zshrc ${HOME}/.zshrc
 	@ln -sf ${PWD}/.gitconfig ${HOME}/.gitconfig
 
