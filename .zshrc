@@ -36,3 +36,5 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 # cargo
 [ -d $HOME/.cargo ] && export PATH="$PATH:$HOME/.cargo/bin"
 
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).

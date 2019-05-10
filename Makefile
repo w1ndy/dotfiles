@@ -1,6 +1,6 @@
 all: zsh exa bat fzf prettyping ncdu diff_so_fancy
 	@echo "Linking files..."
-	@ln -sf ${PWD}/.oh-my-zsh/custom/themes ${HOME}/.oh-my-zsh/custom/themes
+	@ln -sf ${PWD}/.oh-my-zsh/custom/themes/xxf.zsh-theme ${HOME}/.oh-my-zsh/custom/themes/xxf.zsh-theme
 	@ln -sf ${PWD}/.zshrc ${HOME}/.zshrc
 	@ln -sf ${PWD}/.gitconfig ${HOME}/.gitconfig
 
@@ -38,7 +38,7 @@ bat: rust
 	fi
 
 fzf:
-	@if ! which fzf > /dev/null 2>&1; then \
+	@if [ ! -d ${HOME}/.fzf ]; then \
 		echo "Installing fzf..."; \
 		git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf; \
 		${HOME}/.fzf/install --no-update-rc --key-bindings --completion; \
