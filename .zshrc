@@ -36,5 +36,12 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 # cargo
 [ -d $HOME/.cargo ] && export PATH="$PATH:$HOME/.cargo/bin"
 
-
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+if uname -a | grep 'microsoft' >/dev/null; then
+  export WSL_HOST=$(cat /etc/resolv.conf | grep nameserver | cut -d ' ' -f 2)
+  export HTTP_PROXY=${WSL_HOST}:7890
+  export HTTPS_PROXY=${WSL_HOST}:7890
+  export ALL_PROXY=${WSL_HOST}:7890
+  export http_proxy=${WSL_HOST}:7890
+  export https_proxy=${WSL_HOST}:7890
+  export all_proxy=${WSL_HOST}:7890
+fi
