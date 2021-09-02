@@ -1,0 +1,127 @@
+#!/bin/bash
+set -e
+set -u
+set -o pipefail
+
+rust () {
+  case $1 in
+    is_installed)
+      test -d ${HOME}/.cargo
+      ;;
+    install)
+      curl https://sh.rustup.rs -sSf | sh
+      ;;
+  esac
+}
+
+exa () {
+  case $1 in
+    is_installed)
+      test -f ${HOME}/.cargo/bin/exa
+      ;;
+    install)
+      PATH="${PATH}:${HOME}/.cargo/bin"
+      cargo install exa
+      ;;
+  esac
+}
+
+bat () {
+  case $1 in
+    is_installed)
+      test -f ${HOME}/.cargo/bin/bat
+      ;;
+    install)
+      PATH="${PATH}:${HOME}/.cargo/bin"
+      cargo install bat
+      ;;
+  esac
+}
+
+prettyping () {
+  case $1 in
+    is_installed)
+      PATH="${PATH}:$(pwd)/bin"
+      which prettyping > /dev/null 2>&1
+      ;;
+    install)
+      curl -sSL https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping -o bin/prettyping
+      chmod +x bin/prettyping
+      ;;
+  esac
+}
+
+ncdu () {
+  case $1 in
+    is_installed)
+      PATH="${PATH}:$(pwd)/bin"
+      which ncdu > /dev/null 2>&1
+      ;;
+    install)
+      curl -sSL https://dev.yorhel.nl/download/ncdu-linux-i486-1.14.tar.gz -o /tmp/ncdu-linux-i486-1.14.tar.gz
+      tar -zxvf /tmp/ncdu-linux-i486-1.14.tar.gz -C bin/ >/dev/null
+      ;;
+  esac
+}
+
+diff-so-fancy () {
+  case $1 in
+    is_installed)
+      PATH="${PATH}:$(pwd)/bin"
+      which diff-so-fancy > /dev/null 2>&1
+      ;;
+    install)
+      git clone https://github.com/so-fancy/diff-so-fancy.git bin/diff-so-fancy-git --depth=1
+      ln -s $(pwd)/bin/diff-so-fancy-git/diff-so-fancy bin/diff-so-fancy
+      ;;
+  esac
+}
+
+oh-my-fish () {
+  case $1 in
+    is_installed)
+      test -f ${HOME}/.config/fish/conf.d/omf.fish
+      ;;
+    install)
+      echo " > Please exit the fish shell after installation completes"
+      curl -L https://get.oh-my.fish | fish
+      ;;
+  esac
+}
+
+starship () {
+  case $1 in
+    is_installed)
+      test -f /usr/local/bin/starship
+      ;;
+    install)
+      sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+      ;;
+  esac
+}
+
+install () {
+  mkdir -p bin
+  for target in "$@"; do
+    if ${target} is_installed; then
+      echo " > $target aready installed, skipping"
+    else
+      echo " > Installing $target..."
+      ${target} install
+    fi
+  done
+}
+
+link_config () {
+  ln -sfn $(pwd)/config/.gitconfig ${HOME}/.gitconfig
+  ln -sfn $(pwd)/config/config.fish ${HOME}/.config/fish/config.fish
+}
+
+chsh_fish () {
+  echo " > adding fish to allowed shells, root password may be asked"
+  echo "$(which fish)" | sudo tee -a /etc/shells
+  chsh -s $(which fish)
+}
+
+install rust exa bat prettyping ncdu diff-so-fancy starship
+link_config
