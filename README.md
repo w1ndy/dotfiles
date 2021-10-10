@@ -6,6 +6,7 @@ A script for quickly set up Linux environments.
 
 * [Fish shell](https://fishshell.com/)
 * [Nerd fonts](https://www.nerdfonts.com/) (required by [starship](https://github.com/starship/starship))
+* build-essential (required by building rust packages)
 
 ## Usage
 
