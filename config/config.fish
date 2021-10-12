@@ -5,8 +5,7 @@ if grep -q Microsoft /proc/version
   export ALLPROXY="socks5://$WSL_HOST:7890"
 end
 
-fish_add_path ~/.cargo/bin
-fish_add_path ~/dotfiles/bin
+set -g PATH ~/.cargo/bin ~/dotfiles/bin $PATH
 
 alias ls="exa -l --group-directories-first --time-style=long-iso --git"
 alias cat='bat'
