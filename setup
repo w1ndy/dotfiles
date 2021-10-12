@@ -123,5 +123,5 @@ chsh_fish () {
   chsh -s $(which fish)
 }
 
-install rust exa bat prettyping ncdu diff-so-fancy starship
+install rust exa bat prettyping ncdu diff-so-fancy starship oh-my-fish
 link_config
